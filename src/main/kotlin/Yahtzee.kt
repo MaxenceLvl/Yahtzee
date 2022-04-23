@@ -6,11 +6,28 @@ class Yahtzee {
             Combination.LARGE_STRAIGHT  -> calculateLargeStraight(roll)
             Combination.THREE_OF_A_KIND -> calculateXofAKind(roll, 3)
             Combination.FOUR_OF_A_KIND  -> calculateXofAKind(roll, 4)
-            Combination.FULL_HOUSE      -> 40
+            Combination.FULL_HOUSE      -> calculateFullHouse(roll)
             Combination.CHANCE          -> calculateChance(roll)
             Combination.YAHTZEE         -> calculateYahtzee(roll)
             else -> calculateCombination(roll, combination.value)
         }
+    }
+
+    private fun calculateFullHouse(roll: IntArray): Int {
+        val counts = IntArray(6)
+        for (i in 0..4) {
+            counts[roll[i]]++
+        }
+        for (i in 0..5) {
+            if (counts[i] == 3) {
+                for (j in 0..5) {
+                    if (counts[j] == 2) {
+                        return 40
+                    }
+                }
+            }
+        }
+        return 0
     }
 
     private fun calculateYahtzee(roll: IntArray): Int {

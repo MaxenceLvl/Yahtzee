@@ -125,4 +125,11 @@ internal class YahtzeeTest {
         val actual = Yahtzee().calculate(intArrayOf(2, 2, 2, 4, 4), Combination.FULL_HOUSE)
         assertEquals(expected, actual)
     }
+
+    @Test
+    fun `test score of roll with 2, 4, 2, 4, 4 should return 40`() {
+        val expected = 40
+        val actual = Yahtzee().calculate(intArrayOf(2, 2, 2, 4, 4), Combination.FULL_HOUSE)
+        assertEquals(expected, actual)
+    }
 }
