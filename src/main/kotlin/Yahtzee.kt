@@ -7,7 +7,16 @@ class Yahtzee {
             Combination.THREE_OF_A_KIND -> calculateXofAKind(roll, 3)
             Combination.FOUR_OF_A_KIND -> calculateXofAKind(roll, 4)
             Combination.CHANCE          -> calculateChance(roll)
+            Combination.YAHTZEE          -> calculateYahtzee(roll)
             else -> calculateCombination(roll, combination.value)
+        }
+    }
+
+    private fun calculateYahtzee(roll: IntArray): Int {
+        return if (roll.all { it == roll[0] }) {
+            50
+        } else {
+            0
         }
     }
 
