@@ -1,16 +1,20 @@
 class Yahtzee {
 
-    fun calculate(roll: IntArray, combination: Combination? = null): Int {
+    fun calculate(roll: IntArray, combination: Combination): Int {
         return when (combination) {
             Combination.SMALL_STRAIGHT -> calculateSmallStraight(roll)
             Combination.LARGE_STRAIGHT -> calculateLargeStraight(roll)
             Combination.CHANCE -> calculateChance(roll)
-            else -> calculateChance(roll)
+            else -> calculateCombination(roll, combination.value)
         }
     }
 
     private fun calculateChance(roll: IntArray): Int {
         return roll.reduce(Int::plus)
+    }
+
+    private fun calculateCombination(roll: IntArray, diceValue: Int): Int {
+        return diceValue * roll.count { it == diceValue }
     }
     private fun calculateSmallStraight(roll: IntArray): Int {
         return if (roll.contains(1) && roll.contains(2) && roll.contains(3) && roll.contains(4)) {
