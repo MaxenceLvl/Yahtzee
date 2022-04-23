@@ -106,9 +106,16 @@ internal class YahtzeeTest {
     }
 
     @Test
-    fun `test score for Yahtzee`() {
+    fun `test score for Yahtzee should return 50`() {
         val expected = 50
         val actual = Yahtzee().calculate(intArrayOf(2, 2, 2, 2, 2), Combination.YAHTZEE)
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `test score for no Yahtzee should return 0`() {
+        val expected = 0
+        val actual = Yahtzee().calculate(intArrayOf(2, 2, 2, 5, 2), Combination.YAHTZEE)
         assertEquals(expected, actual)
     }
 }
