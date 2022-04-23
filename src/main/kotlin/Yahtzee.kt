@@ -11,21 +11,12 @@ class Yahtzee {
     }
 
     private fun calculateThreeOfAKind(roll: IntArray): Int {
-
         for (diceValue in 1..6) {
             if (roll.count { it == diceValue } >= 3) {
                 return roll.sum()
             }
         }
-
         return 0
-//        {
-//            if (roll.Count(dice => dice == diceValue) >= numberDices)
-//            return roll.Sum();
-//        }
-//
-//        val counts = roll.groupBy { it }.mapValues { it.value.size }
-//        return counts.filter { it.value == 3 }.keys.firstOrNull()?.let { it * 3 } ?: 0
     }
 
     private fun calculateChance(roll: IntArray): Int {
