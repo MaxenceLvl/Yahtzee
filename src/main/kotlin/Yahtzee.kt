@@ -4,25 +4,16 @@ class Yahtzee {
         return when (combination) {
             Combination.SMALL_STRAIGHT  -> calculateSmallStraight(roll)
             Combination.LARGE_STRAIGHT  -> calculateLargeStraight(roll)
-            Combination.THREE_OF_A_KIND -> calculateThreeOfAKind(roll)
-            Combination.FOUR_OF_A_KIND -> calculateFourOfAKind(roll)
+            Combination.THREE_OF_A_KIND -> calculateXofAKind(roll, 3)
+            Combination.FOUR_OF_A_KIND -> calculateXofAKind(roll, 4)
             Combination.CHANCE          -> calculateChance(roll)
             else -> calculateCombination(roll, combination.value)
         }
     }
 
-    private fun calculateThreeOfAKind(roll: IntArray): Int {
+    private fun calculateXofAKind(roll: IntArray, x: Int): Int {
         for (diceValue in 1..6) {
-            if (roll.count { it == diceValue } >= 3) {
-                return roll.sum()
-            }
-        }
-        return 0
-    }
-
-    private fun calculateFourOfAKind(roll: IntArray): Int {
-        for (diceValue in 1..6) {
-            if (roll.count { it == diceValue } >= 4) {
+            if (roll.count { it == diceValue } >= x) {
                 return roll.sum()
             }
         }
