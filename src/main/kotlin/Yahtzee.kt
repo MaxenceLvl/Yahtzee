@@ -2,11 +2,30 @@ class Yahtzee {
 
     fun calculate(roll: IntArray, combination: Combination): Int {
         return when (combination) {
-            Combination.SMALL_STRAIGHT -> calculateSmallStraight(roll)
-            Combination.LARGE_STRAIGHT -> calculateLargeStraight(roll)
-            Combination.CHANCE -> calculateChance(roll)
+            Combination.SMALL_STRAIGHT  -> calculateSmallStraight(roll)
+            Combination.LARGE_STRAIGHT  -> calculateLargeStraight(roll)
+            Combination.THREE_OF_A_KIND -> calculateThreeOfAKind(roll)
+            Combination.CHANCE          -> calculateChance(roll)
             else -> calculateCombination(roll, combination.value)
         }
+    }
+
+    private fun calculateThreeOfAKind(roll: IntArray): Int {
+
+        for (diceValue in 1..6) {
+            if (roll.count { it == diceValue } >= 3) {
+                return roll.sum()
+            }
+        }
+
+        return 0
+//        {
+//            if (roll.Count(dice => dice == diceValue) >= numberDices)
+//            return roll.Sum();
+//        }
+//
+//        val counts = roll.groupBy { it }.mapValues { it.value.size }
+//        return counts.filter { it.value == 3 }.keys.firstOrNull()?.let { it * 3 } ?: 0
     }
 
     private fun calculateChance(roll: IntArray): Int {
