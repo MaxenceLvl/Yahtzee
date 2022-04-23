@@ -5,6 +5,7 @@ class Yahtzee {
             Combination.SMALL_STRAIGHT  -> calculateSmallStraight(roll)
             Combination.LARGE_STRAIGHT  -> calculateLargeStraight(roll)
             Combination.THREE_OF_A_KIND -> calculateThreeOfAKind(roll)
+            Combination.FOUR_OF_A_KIND -> calculateFourOfAKind(roll)
             Combination.CHANCE          -> calculateChance(roll)
             else -> calculateCombination(roll, combination.value)
         }
