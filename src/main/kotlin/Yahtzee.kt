@@ -2,17 +2,21 @@ class Yahtzee {
 
     fun Calculate(roll: IntArray, combination: Combination? = null): Int {
         if (combination == Combination.SMALL_STRAIGHT) {
-            return if (roll.contains(1) && roll.contains(2) && roll.contains(3) && roll.contains(4)) {
-                30
-            } else if (roll.contains(2) && roll.contains(3) && roll.contains(4) && roll.contains(5)) {
-                30
-            } else if (roll.contains(3) && roll.contains(4) && roll.contains(5) && roll.contains(6)) {
-                30
-            } else {
-                0
-            }
+            return calculateSmallStraight(roll)
         }
         return roll.reduce(Int::plus)
+    }
+
+    private fun calculateSmallStraight(roll: IntArray): Int {
+        return if (roll.contains(1) && roll.contains(2) && roll.contains(3) && roll.contains(4)) {
+            30
+        } else if (roll.contains(2) && roll.contains(3) && roll.contains(4) && roll.contains(5)) {
+            30
+        } else if (roll.contains(3) && roll.contains(4) && roll.contains(5) && roll.contains(6)) {
+            30
+        } else {
+            0
+        }
     }
 }
 
