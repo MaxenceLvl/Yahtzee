@@ -19,6 +19,15 @@ class Yahtzee {
         return 0
     }
 
+    private fun calculateFourOfAKind(roll: IntArray): Int {
+        for (diceValue in 1..6) {
+            if (roll.count { it == diceValue } >= 4) {
+                return roll.sum()
+            }
+        }
+        return 0
+    }
+
     private fun calculateChance(roll: IntArray): Int {
         return roll.reduce(Int::plus)
     }
